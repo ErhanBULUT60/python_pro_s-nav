@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Sonuç{% endblock %}
+
+{% block content %}
+<div class="result">
+    <h2>Sınav Sonucu</h2>
+    <p>Aldığınız Puan: {{ score }}</p>
+    <p>En Yüksek Puanınız: {{ highest_score }}</p>
+    <p>Global En Yüksek Puan: {{ global_highest_score }}</p>
+    <a href="{{ url_for('exam') }}" class="btn">Sınavı Tekrarla</a>
+</div>
+{% endblock %}

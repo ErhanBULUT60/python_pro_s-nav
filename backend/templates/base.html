@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Python Pro Seviyesi Sınavı</h1>
+        <div class="scores" style="position: absolute; top: 10px; right: 10px;">
+            {% if 'user_id' in session %}
+                <p>Kişisel Yüksek Skor: {{ highest_score }}</p>
+            {% endif %}
+            <p>Global Yüksek Skor: {{ global_highest_score }}</p>
+        </div>
+        <nav>
+            <a href="{{ url_for('login') }}">Giriş Yap</a> |
+            <a href="{{ url_for('register') }}">Kayıt Ol</a>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>Yazar: [Erhan Bulut]</p>
+    </footer>
+</body>
+</html>
